@@ -3,6 +3,9 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: write # ← ДОБАВЬТЕ В НАЧАЛО JOBS
+
 jobs:
   build:
     runs-on: ubuntu-latest
