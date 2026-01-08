@@ -24,6 +24,9 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Create 404.html для SPA # ← ДОБАВЬТЕ
+        run: cp dist/index.html dist/404.html
+
       - name: List dist contents # ✅ Отладка
         run: ls -la dist/
 
