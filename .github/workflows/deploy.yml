@@ -1,5 +1,4 @@
 name: Deploy
-
 on:
   push:
     branches: [main]
@@ -13,33 +12,20 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: '20' # ✅ Node 20.19+ для Vite 7
           cache: 'npm'
 
       - name: Install
         run: npm ci
 
       - name: Build
-        run: npm run build [web:1][web:5]
+        run: npm run build
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: dist
-          path: dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          name: dist
-          path: dist
+      - name: List dist contents # ✅ Отладка
+        run: ls -la dist/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist [web:3][web:5]
+          publish_dir: ./dist
