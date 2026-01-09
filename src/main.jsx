@@ -9,7 +9,7 @@ import store from './redux/store.js';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter basename="/APP-YouTube-SPA/">
+    <BrowserRouter>
       <Provider store={store}>
         <App />
       </Provider>
