@@ -21,7 +21,13 @@ const FavoriteItem = ({ title, item }) => {
   const runHandle = () => {
     navigate('/');
     dispatch(setQuery(item.query));
-    dispatch(getVideos({ query: item.query, videoCounts: item.maxResults }));
+    dispatch(
+      getVideos({
+        query: item.query,
+        videoCounts: item.maxResults,
+        sort: item.sort,
+      })
+    );
   };
 
   const editHandle = () => {

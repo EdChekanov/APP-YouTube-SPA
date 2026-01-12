@@ -3,7 +3,7 @@ import { youtubeApi } from '../../api/axios';
 
 export const getVideos = createAsyncThunk(
   'youtube/getVideos',
-  async ({ query, videoCounts = 12 }, thunkAPI) => {
+  async ({ query, videoCounts = 12, sort = 'relevance' }, thunkAPI) => {
     if (!query.trim()) return null;
 
     try {
@@ -14,6 +14,7 @@ export const getVideos = createAsyncThunk(
           part: 'snippet',
           type: 'video',
           maxResults: videoCounts,
+          order: sort,
         },
       });
 

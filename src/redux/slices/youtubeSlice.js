@@ -1,8 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getVideos } from '../api/youtubeApi';
 
-const token = localStorage.getItem('token');
-
 const initialState = {
   value: null,
   query: '',
@@ -10,11 +8,11 @@ const initialState = {
   isLoading: false,
   error: null,
   view: 'list',
-  favorites: JSON.parse(localStorage.getItem(`favorites_${token}`)) || [],
+  favorites: [],
   modal: {
     isVisible: false,
     isEdit: false,
-    editItem: { query: '', title: '', maxResults: 12 },
+    editItem: { query: '', title: '', maxResults: '12', sort: 'relevance' },
     query: '',
   },
 };
@@ -42,14 +40,16 @@ const youtubeSlice = createSlice({
     setModalQuery(state, action) {
       state.modal.query = action.payload;
     },
+    setFavorites(state, action) {
+      state.favorites = action.payload;
+    },
     addFavorite(state, action) {
       state.favorites.push({
         query: action.payload.query,
         title: action.payload.name,
-        maxResults: action.payload.count,
-        id: `${Date.now().toString(36)}${Math.random()
-          .toString(36)
-          .substr(2, 5)}`,
+        maxResults: `${action.payload.count}`,
+        id: action.payload.id,
+        sort: action.payload.sort,
       });
     },
     editFavorite(state, action) {
@@ -140,6 +140,7 @@ export const {
   openModal,
   closeModal,
   setModalQuery,
+  setFavorites,
   addFavorite,
   editFavorite,
   deleteFavorite,

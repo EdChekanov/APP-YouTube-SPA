@@ -1,4 +1,4 @@
-import { Modal, Form, Input, InputNumber, Button } from 'antd';
+import { Modal, Form, Input, InputNumber, Button, Select } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectLastQuery,
@@ -44,6 +44,7 @@ const ModalWindow = ({ visible, onCancel, onSave }) => {
         query: modalQuery || lastQuery,
         name: editItem?.title || '',
         count: editItem?.maxResults || 12,
+        sort: editItem?.sort || 'relevance',
       });
     }
   }, [dispatch, editItem, visible, modalQuery, lastQuery, form]);
@@ -67,6 +68,16 @@ const ModalWindow = ({ visible, onCancel, onSave }) => {
           rules={[{ required: true, message: 'Введите название!' }]}
         >
           <Input placeholder="Название запроса" />
+        </Form.Item>
+
+        <Form.Item label="Сортировка" name="sort" initialValue="relevance">
+          <Select style={{ width: '100%' }} placeholder="Выберите сортировку">
+            <Select.Option value="relevance">По релевантности</Select.Option>
+            <Select.Option value="date">По дате</Select.Option>
+            <Select.Option value="rating">По рейтингу</Select.Option>
+            <Select.Option value="title">По названию</Select.Option>
+            <Select.Option value="viewCount">По просмотрам</Select.Option>
+          </Select>
         </Form.Item>
 
         <Form.Item label="Максимальное количество" name="count">

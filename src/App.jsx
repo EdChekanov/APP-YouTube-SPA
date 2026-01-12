@@ -6,20 +6,8 @@ import Main from './components/main/Main';
 import PrivateRoute from './components/PrivateRoute';
 import Favorites from './components/main/favorites/Favorites';
 import Search from './components/main/search/Search';
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { selectFavorites } from './redux/slices/youtubeSlice';
 
 function App() {
-  const favorites = useSelector(selectFavorites);
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      localStorage.setItem(`favorites_${token}`, JSON.stringify(favorites));
-    }
-  }, [favorites]);
-
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />

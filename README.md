@@ -4,4 +4,4 @@
 
 # Деплой
 
-https://edchekanov.github.io/APP-YouTube-SPA/
+https://youtube-spa-rouge.vercel.app/

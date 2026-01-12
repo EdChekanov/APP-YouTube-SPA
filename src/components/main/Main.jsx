@@ -12,6 +12,8 @@ import {
   selectModalIsEdit,
   selectModalEditItem,
 } from '../../redux/slices/youtubeSlice';
+import { useEffect } from 'react';
+import { generateId } from '../../utils/generateId';
 
 const Main = () => {
   const isModalVisible = useSelector(selectModalIsVisible);
@@ -29,9 +31,14 @@ const Main = () => {
   const handleSave = (formData) => {
     isEditMode
       ? dispatch(editFavorite({ ...formData, id: editItem.id }))
-      : dispatch(addFavorite(formData));
+      : dispatch(addFavorite({ ...formData, id: generateId() }));
     handleCancel();
   };
+
+  useEffect(() => {
+    dispatch({ type: 'youtube/initFavorites' });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="wrapper">
