@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   height: 100vh;
-  max-width: 98vw;
+  min-width: 100vw;
   padding: 0 10vw;
 
   .header {
@@ -11,7 +11,7 @@
     height: 11vh;
     display: flex;
     align-items: center;
-    background-color: #fff;
+    background-color: #fafafa;
     .nav {
       margin: 0 5vw;
       display: flex;
@@ -30,6 +30,7 @@
     .logout-btn {
       margin-left: auto;
       color: #1390e5;
+      background-color: #fafafa;
     }
   }
 
@@ -187,9 +188,11 @@
     list-style-type: none;
     .favorite-item {
       position: relative;
+      padding: 1vh 1vw;
       width: 100%;
       height: 6vh;
       display: flex;
+      box-shadow: 0 10px 15px -5px rgba(0, 0, 0, 0.2);
       font-weight: bold;
       background-color: #fff;
       .title {
