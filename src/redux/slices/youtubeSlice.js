@@ -2,12 +2,16 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getVideos } from '../api/youtubeApi';
 
 const initialState = {
-  value: null,
-  query: '',
-  lastQuery: '',
-  isLoading: false,
-  error: null,
-  view: 'list',
+  data: {
+    value: null,
+    query: '',
+    lastQuery: '',
+  },
+  status: {
+    isLoading: false,
+    error: null,
+    view: 'list',
+  },
   favorites: [],
   modal: {
     isVisible: false,
@@ -22,14 +26,14 @@ const youtubeSlice = createSlice({
   initialState,
   reducers: {
     resetValue(state) {
-      state.value = null;
-      state.query = '';
+      state.data.value = null;
+      state.data.query = '';
     },
     setQuery(state, action) {
-      state.query = action.payload;
+      state.data.query = action.payload;
     },
     setView(state, action) {
-      state.view = action.payload;
+      state.status.view = action.payload;
     },
     openModal(state) {
       state.modal.isVisible = true;
@@ -53,15 +57,14 @@ const youtubeSlice = createSlice({
       });
     },
     editFavorite(state, action) {
-      console.log(action.payload);
-
       state.favorites = state.favorites.map((item) =>
         item.id === action.payload.id
           ? {
               ...item,
               query: action.payload.query,
               title: action.payload.name,
-              maxResults: action.payload.count,
+              maxResults: `${action.payload.count}`,
+              sort: action.payload.sort,
             }
           : item
       );
@@ -83,35 +86,35 @@ const youtubeSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getVideos.fulfilled, (state, action) => {
-        state.value = action.payload;
-        state.lastQuery = state.query;
+        state.data.value = action.payload;
+        state.data.lastQuery = state.data.query;
       })
       .addMatcher(
         (action) => action.type.endsWith('/pending'),
         (state) => {
-          state.isLoading = true;
+          state.status.isLoading = true;
         }
       )
       .addMatcher(
         (action) => action.type.endsWith('/fulfilled'),
         (state) => {
-          state.isLoading = false;
+          state.status.isLoading = false;
         }
       )
       .addMatcher(
         (action) => action.type.endsWith('/rejected'),
         (state, action) => {
-          state.error = action.payload;
+          state.status.error = action.payload;
         }
       );
   },
   selectors: {
-    selectValue: (state) => state.value,
-    selectQuery: (state) => state.query,
-    selectLastQuery: (state) => state.lastQuery,
-    selectLoading: (state) => state.isLoading,
-    selectError: (state) => state.error,
-    selectView: (state) => state.view,
+    selectValue: (state) => state.data.value,
+    selectQuery: (state) => state.data.query,
+    selectLastQuery: (state) => state.data.lastQuery,
+    selectLoading: (state) => state.status.isLoading,
+    selectError: (state) => state.status.error,
+    selectView: (state) => state.status.view,
     selectFavorites: (state) => state.favorites,
     selectModalIsVisible: (state) => state.modal.isVisible,
     selectModalIsEdit: (state) => state.modal.isEdit,
