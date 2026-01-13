@@ -3,7 +3,7 @@ import {
   selectError,
   selectLoading,
   selectValue,
-} from '../../../redux/slices/youtubeSlice';
+} from '../../../redux/slices/youtubeDataSlice';
 import SearchInput from './SearchInput';
 import SearchList from './search-list/SearchList';
 import { Spin } from 'antd';

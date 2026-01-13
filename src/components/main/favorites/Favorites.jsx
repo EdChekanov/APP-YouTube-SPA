@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { selectFavorites } from '../../../redux/slices/youtubeSlice';
+import { selectFavorites } from '../../../redux/slices/favoritesSlice';
 import FavoriteItem from './FavoriteItem';
 
 const Favorites = () => {

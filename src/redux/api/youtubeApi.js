@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { youtubeApi } from '../../api/axios';
 
 export const getVideos = createAsyncThunk(
-  'youtube/getVideos',
+  'youtubeData/getVideos',
   async ({ query, videoCounts = 12, sort = 'relevance' }, thunkAPI) => {
     if (!query.trim()) return null;
 

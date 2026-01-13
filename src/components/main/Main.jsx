@@ -2,16 +2,15 @@ import { Outlet } from 'react-router';
 import Header from './Header';
 import ModalWindow from './modal/ModalWindow';
 import { useDispatch, useSelector } from 'react-redux';
+import { addFavorite, editFavorite } from '../../redux/slices/favoritesSlice';
 import {
-  addFavorite,
-  editFavorite,
   closeModal,
   selectModalIsVisible,
   setModalQuery,
   exitEditMode,
   selectModalIsEdit,
   selectModalEditItem,
-} from '../../redux/slices/youtubeSlice';
+} from '../../redux/slices/uiSlice';
 import { useEffect } from 'react';
 import { generateId } from '../../utils/generateId';
 
@@ -36,7 +35,7 @@ const Main = () => {
   };
 
   useEffect(() => {
-    dispatch({ type: 'youtube/initFavorites' });
+    dispatch({ type: 'favorites/initFavorites' });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

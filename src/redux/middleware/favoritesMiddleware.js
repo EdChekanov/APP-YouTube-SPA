@@ -4,12 +4,12 @@ import {
   deleteFavorite,
   editFavorite,
   setFavorites,
-} from '../slices/youtubeSlice';
+} from '../slices/favoritesSlice';
 
 export const favoritesMiddleware = createListenerMiddleware();
 
 favoritesMiddleware.startListening({
-  type: 'youtube/initFavorites',
+  type: 'favorites/initFavorites',
   effect: (_, listenerApi) => {
     const token = localStorage.getItem('token');
     const saved = JSON.parse(localStorage.getItem(`favorites_${token}`)) || [];
@@ -21,7 +21,7 @@ favoritesMiddleware.startListening({
   matcher: isAnyOf(addFavorite, editFavorite, deleteFavorite),
   effect: (_, listenerApi) => {
     const token = localStorage.getItem('token');
-    const currentFavorites = listenerApi.getState().youtube.favorites;
+    const currentFavorites = listenerApi.getState().favorites.value;
 
     localStorage.setItem(
       `favorites_${token}`,

@@ -7,12 +7,9 @@ import {
 import { useDispatch } from 'react-redux';
 import { getVideos } from '../../../redux/api/youtubeApi';
 import { useNavigate } from 'react-router';
-import {
-  deleteFavorite,
-  enterEditMode,
-  openModal,
-  setQuery,
-} from '../../../redux/slices/youtubeSlice';
+import { deleteFavorite } from '../../../redux/slices/favoritesSlice';
+import { enterEditMode, openModal } from '../../../redux/slices/uiSlice';
+import { setQuery } from '../../../redux/slices/youtubeDataSlice';
 
 const FavoriteItem = ({ title, item }) => {
   const dispatch = useDispatch();

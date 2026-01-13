@@ -37,6 +37,5 @@
   },
   "overrides": {
     "react-scripts": null
-  },
-  "packageManager": "yarn@4.0.2"
+  }
 }

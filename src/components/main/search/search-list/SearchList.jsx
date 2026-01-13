@@ -1,12 +1,11 @@
 import { UnorderedListOutlined, AppstoreOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
+import { selectView, setView } from '../../../../redux/slices/uiSlice';
 import {
   selectLastQuery,
   selectValue,
-  selectView,
-  setView,
-} from '../../../../redux/slices/youtubeSlice';
+} from '../../../../redux/slices/youtubeDataSlice';
 import SearchItem from './SearchItem';
 
 const SearchList = () => {

@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router';
 import { logout } from '../../redux/slices/authSlice';
-import { resetValue } from '../../redux/slices/youtubeSlice';
+import { resetValue } from '../../redux/slices/youtubeDataSlice';
 
 const Header = () => {
   const dispatch = useDispatch();

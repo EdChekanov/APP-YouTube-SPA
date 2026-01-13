@@ -1,11 +1,9 @@
 import { HeartOutlined } from '@ant-design/icons';
 import { Button, Input } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  openModal,
-  selectQuery,
-  setQuery,
-} from '../../../redux/slices/youtubeSlice';
+import { openModal } from '../../../redux/slices/uiSlice';
+import { selectQuery, setQuery } from '../../../redux/slices/youtubeDataSlice';
+
 import { getVideos } from '../../../redux/api/youtubeApi';
 
 const SearchInput = () => {

@@ -1,12 +1,12 @@
 import { Modal, Form, Input, InputNumber, Button, Select } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  selectLastQuery,
   selectModalEditItem,
   selectModalIsEdit,
   selectModalQuery,
   setModalQuery,
-} from '../../../redux/slices/youtubeSlice';
+} from '../../../redux/slices/uiSlice';
+import { selectLastQuery } from '../../../redux/slices/youtubeDataSlice';
 import { useEffect } from 'react';
 
 const ModalWindow = ({ visible, onCancel, onSave }) => {
