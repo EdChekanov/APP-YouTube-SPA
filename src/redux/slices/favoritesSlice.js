@@ -21,17 +21,14 @@ const youtubeSlice = createSlice({
       });
     },
     editFavorite(state, action) {
-      state.value = state.value.map((item) =>
-        item.id === action.payload.id
-          ? {
-              ...item,
-              query: action.payload.query,
-              title: action.payload.name,
-              maxResults: `${action.payload.count}`,
-              sort: action.payload.sort,
-            }
-          : item
+      const favoriteItem = state.value.find(
+        (item) => item.id === action.payload.id
       );
+
+      favoriteItem.query = action.payload.query;
+      favoriteItem.title = action.payload.name;
+      favoriteItem.maxResults = `${action.payload.count}`;
+      favoriteItem.sort = action.payload.sort;
     },
     deleteFavorite: (state, action) => {
       state.value = state.value.filter((item) => item.id !== action.payload);
